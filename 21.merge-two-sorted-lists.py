@@ -14,22 +14,18 @@ class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         iterator1 = l1
         iterator2 = l2
-        result = ListNode()
-        iteratorR = result
-        while iterator1 != None and iterator2 != None:
-            value1 = iterator1.val
-            value2 = iterator2.val
-            if value1 <= value2:
-                iteratorR.next = ListNode(value1)
+        result = iteratorR = ListNode()
+        while iterator1 and iterator2:
+            if iterator1.val <= iterator2.val:
+                iteratorR.next = iterator1
                 iterator1 = iterator1.next
             else:
-                iteratorR.next = ListNode(value2)
+                iteratorR.next = iterator2
                 iterator2 = iterator2.next
             
             iteratorR = iteratorR.next
         
-        if iterator1 == None: iteratorR.next = iterator2
-        else: iteratorR.next = iterator1
+        iteratorR.next = iterator1 or iterator2
 
         return result.next
 # @lc code=end
