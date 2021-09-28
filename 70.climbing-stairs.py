@@ -6,16 +6,17 @@
 
 # @lc code=start
 class Solution:
-    cache = {
-        1: 1,
-        2: 2,
-    }
     def climbStairs(self, n: int) -> int:
-        if n in Solution.cache: return Solution.cache[n]
-        else :
-            result = self.climbStairs(n - 1) + self.climbStairs(n - 2)
-            Solution.cache[n] = result
-            
-        return result
+        if n == 1: return 1
+        if n == 2: return 2
+
+        cache = [0] * (n+1)
+        cache[0] = 0
+        cache[1] = 1
+        cache[2] = 2
+        for i in range(3, n + 1):
+            cache[i] = cache[i - 1] + cache[i - 2]
+
+        return cache[n]
 # @lc code=end
 
