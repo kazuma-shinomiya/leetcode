@@ -12,22 +12,14 @@
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head == None: return head
+        current = head
+        while current and current.next:
+            if current.val == current.next.val: 
+                current.next = current.next.next
+            else:
+                current = current.next
         
-        queue = []
-        iterator = head
-        queue.append(iterator.val)
-        result = ListNode(iterator.val)
-        iteratorR = result
-        iterator = iterator.next
-        while iterator != None:
-            if iterator.val != queue[-1]: 
-                queue.append(iterator.val)
-                iteratorR.next = ListNode(iterator.val)
-                iteratorR = iteratorR.next
-            iterator = iterator.next
-        
-        return result
+        return head
 
 # @lc code=end
 
