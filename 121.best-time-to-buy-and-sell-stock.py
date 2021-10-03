@@ -7,14 +7,11 @@
 # @lc code=start
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        stack = [sys.maxsize]
+        minPrice = sys.maxsize
         maxPrice = 0
         for price in prices:
-            if price <= stack[-1]: 
-                stack.append(price)
-                continue
-
-            maxPrice = max(price - stack[-1], maxPrice)
+            minPrice = min(price, minPrice)
+            maxPrice = max(price - minPrice, maxPrice)
         
         return maxPrice
 
