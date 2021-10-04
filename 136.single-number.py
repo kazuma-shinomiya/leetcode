@@ -7,11 +7,10 @@
 # @lc code=start
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        hashmap = {}
+        result = 0
         for num in nums:
-            if num in hashmap: hashmap.pop(num)
-            else: hashmap[num] = num
+            result ^= num
         
-        return list(hashmap.keys())[0]
+        return result
 # @lc code=end
 
