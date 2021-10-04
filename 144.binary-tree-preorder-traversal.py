@@ -16,17 +16,14 @@
 class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         results = []
-        results = self.preorder(root, results)
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                results.append(node.val)
+                stack.append(node.right)
+                stack.append(node.left)
 
         return results
-
-    def preorder(self, root: Optional[TreeNode], array: List[int])->List[int]:
-        if not root: return None
-
-        array.append(root.val)
-        self.preorder(root.left, array)
-        self.preorder(root.right, array)
-
-        return array
 # @lc code=end
 
