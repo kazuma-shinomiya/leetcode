@@ -14,13 +14,11 @@ class Solution:
             else: hashmap[num] = 1
         
         maxCount = 0
-        result = 0
+        results = 0
         for num, count in hashmap.items():
             if count > maxCount: 
                 maxCount = count
-                result = num
-        
-        return result
+                re
 
 # @lc code=end
 
