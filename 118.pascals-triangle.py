@@ -7,20 +7,10 @@
 # @lc code=start
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-        results = []
-        for i in range(1, numRows + 1):
-            addedRow = []
-            addedRow.append(1)
-            if i == 1: 
-                results.append(addedRow)
-                continue
+        results = [[1]]
+        for i in range(1, numRows):
+            results = results + [list(map(lambda x, y: x+y, results[-1] + [0], [0] + results[-1]))]
 
-            if i >= 3: 
-                for j in range(i - 2):
-                    addedRow.append(results[-1][j] + results[-1][j + 1])
-            addedRow.append(1)
-            results.append(addedRow)
-
-        return results
+        return results[:numRows]
 # @lc code=end
 
