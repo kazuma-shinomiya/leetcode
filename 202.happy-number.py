@@ -7,18 +7,12 @@
 # @lc code=start
 class Solution:
     def isHappy(self, n: int) -> bool:
-        cache = {}
-        while n != 1:
-            if n in cache: return False
+        cache = set()
+        while n not in cache:
+            cache.add(n)
+            n = sum([int(x) ** 2 for x in str(n)])
 
-            cache[n] = 1
-            result = 0
-            while n > 0:
-                result += pow(n % 10, 2)
-                n //= 10
-            n = result
-
-        return True
+        return n == 1
 
 # @lc code=end
 
