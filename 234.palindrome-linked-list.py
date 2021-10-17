@@ -12,12 +12,17 @@
 #         self.next = next
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        values = []
-        node = head
-        while node:
-            values.append(node.val)
-            node = node.next
+        reverse = None
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            reverse, reverse.next, slow = slow, reverse, slow.next 
+        if fast: slow = slow.next
+        while reverse and reverse.val == slow.val:
+            slow = slow.next
+            reverse = reverse.next
         
-        return values == values[::-1]
+        return not reverse
+
 # @lc code=end
 
