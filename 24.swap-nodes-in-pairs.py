@@ -15,29 +15,21 @@
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head: return None
+        dummy = ListNode(-1)
+        dummy.next = head
+        node = dummy
+        while head and head.next:
+            first = head
+            second = head.next
+            
+            node.next = second
+            first.next = second.next
+            second.next = first
 
-        fast = head.next
-        slow = head
-        result = ListNode()
-        node = result
-        while fast and fast.next:
-            print(fast.val, slow.val)
-            node.next = ListNode(fast.val)
-            node = node.next
-            node.next = ListNode(slow.val)
-            node = node.next
-            fast = fast.next.next
-            slow = slow.next.next
-        
-        if fast:
-            node.next = ListNode(fast.val)
-            node = node.next
-            node.next = ListNode(slow.val)
-            node = node.next
-        elif slow:
-            node.next = ListNode(slow.val)
+            node = first
+            head = first.next
 
-        return result.next
+        return dummy.next
 
 # @lc code=end
 
