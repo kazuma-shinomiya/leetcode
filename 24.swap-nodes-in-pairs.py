@@ -14,22 +14,12 @@
 
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head: return None
-        dummy = ListNode(-1)
-        dummy.next = head
-        node = dummy
-        while head and head.next:
-            first = head
-            second = head.next
-            
-            node.next = second
-            first.next = second.next
-            second.next = first
+        if not head or not head.next: return head
 
-            node = first
-            head = first.next
+        nextNode = head.next
+        head.next = self.swapPairs(head.next.next)
+        nextNode.next = head
 
-        return dummy.next
-
+        return nextNode
 # @lc code=end
 
